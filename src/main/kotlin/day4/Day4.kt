@@ -94,6 +94,22 @@ private fun part1CheckForXmas(
     }
 }
 
+private fun part1(): Int {
+    val matrix = getMatrix()
+    var xmasCount = 0
+    matrix.forEachIndexed { row, line ->
+        line.forEachIndexed { column, char ->
+            if (char == 'X') {
+                xmasCount += Direction.entries
+                    .map { direction -> part1CheckForXmas(matrix, row, column, direction, "X") }
+                    .count { it }
+            }
+        }
+    }
+
+    return xmasCount
+}
+
 private fun part2(): Int {
     val matrix = getMatrix()
     var xmasCount = 0
