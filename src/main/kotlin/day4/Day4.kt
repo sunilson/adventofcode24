@@ -30,22 +30,6 @@ private enum class Direction {
     TOP, BOTTOM, LEFT, RIGHT, TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT;
 }
 
-private fun part1(): Int {
-    val matrix = getMatrix()
-    var xmasCount = 0
-    matrix.forEachIndexed { row, line ->
-        line.forEachIndexed { column, char ->
-            if (char == 'X') {
-                xmasCount += Direction.entries
-                    .map { direction -> part1CheckForXmas(matrix, row, column, direction, "X") }
-                    .count { it }
-            }
-        }
-    }
-
-    return xmasCount
-}
-
 private fun getNextRowForDirection(row: Int, direction: Direction): Int {
     return when (direction) {
         TOP, TOP_LEFT, TOP_RIGHT -> row - 1
@@ -92,6 +76,22 @@ private fun part1CheckForXmas(
         "XM", "XMA" -> part1CheckForXmas(matrix, nextRow, nextColumn, direction, newResult)
         else -> false
     }
+}
+
+private fun part1(): Int {
+    val matrix = getMatrix()
+    var xmasCount = 0
+    matrix.forEachIndexed { row, line ->
+        line.forEachIndexed { column, char ->
+            if (char == 'X') {
+                xmasCount += Direction.entries
+                    .map { direction -> part1CheckForXmas(matrix, row, column, direction, "X") }
+                    .count { it }
+            }
+        }
+    }
+
+    return xmasCount
 }
 
 private fun part2(): Int {
