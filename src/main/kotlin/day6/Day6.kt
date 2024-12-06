@@ -21,20 +21,15 @@ private fun part1(): Int {
     var patrol = map.flatten().first { it is MapElement.Patrol } as MapElement.Patrol
     val visitedCoordinates = mutableSetOf(patrol.x to patrol.y)
 
-    while (true) {
+    while (patrol.x in 0..<mapWidth && patrol.y in 0..<mapHeight) {
+        visitedCoordinates.add(patrol.x to patrol.y)
+        controlMap[patrol.y][patrol.x] = patrol
         patrol = getNextPositionForPatrol(patrol, map, mapWidth, mapHeight)
-        if (patrol.x in 0..<mapWidth && patrol.y in 0..<mapHeight) {
-            visitedCoordinates.add(patrol.x to patrol.y)
-            controlMap[patrol.y][patrol.x] = patrol
-        } else {
-            break
-        }
     }
 
     return visitedCoordinates.size
 }
 
-@Suppress("UNREACHABLE_CODE")
 fun part2(): Int = runBlocking {
     val map = getMap()
     val mapWidth = map.first().size
@@ -51,22 +46,12 @@ fun part2(): Int = runBlocking {
                     val previousDirectionChanges = mutableSetOf<Pair<Pair<Int, Int>, Direction>>()
 
                     innerMap[rowIndex][columnIndex] = MapElement.Block(columnIndex, rowIndex)
-                    while (true) {
+                    while (patrol.x in 0..<mapWidth && patrol.y in 0..<mapHeight) {
                         patrol = getNextPositionForPatrol(patrol, innerMap, mapWidth, mapHeight)
-
-                        val prevDirectionChange = previousDirectionChanges.lastOrNull()
-                        val isNullAndNotTopDirection = prevDirectionChange == null && patrol.direction != Direction.TOP
-                        val isNotNullAndChange =
-                            prevDirectionChange != null && patrol.direction != prevDirectionChange.second
-
-                        if (isNullAndNotTopDirection || isNotNullAndChange) {
+                        if (patrol.direction != previousDirectionChanges.lastOrNull()?.second) {
                             if (!previousDirectionChanges.add((patrol.x to patrol.y) to patrol.direction)) {
                                 return@withContext true
                             }
-                        }
-
-                        if (patrol.x !in 0..<mapWidth || patrol.y !in 0..<mapHeight) {
-                            return@withContext false
                         }
                     }
 
@@ -104,10 +89,10 @@ private fun getNextPositionForPatrol(
         val directionIndex = Direction.entries.indexOf(patrol.direction)
         val nextIndex = if (directionIndex == Direction.entries.lastIndex) 0 else directionIndex + 1
         return getNextPositionForPatrol(
-            patrol.copy(direction = Direction.entries[nextIndex]),
-            map,
-            mapWidth,
-            mapHeight
+            patrol = patrol.copy(direction = Direction.entries[nextIndex]),
+            map = map,
+            mapWidth = mapWidth,
+            mapHeight = mapHeight
         )
     }
 }
@@ -154,9 +139,9 @@ private fun getMap(): List<List<MapElement>> {
                 when (char) {
                     '^', '>', '<', 'v' -> {
                         MapElement.Patrol(
-                            column,
-                            row,
-                            when (char) {
+                            x = column,
+                            y = row,
+                            direction = when (char) {
                                 '^' -> Direction.TOP
                                 '>' -> Direction.RIGHT
                                 '<' -> Direction.LEFT
