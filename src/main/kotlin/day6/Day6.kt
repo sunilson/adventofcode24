@@ -15,7 +15,6 @@ fun day6() {
 
 private fun part1(): Int {
     val map = getMap()
-    val controlMap = map.map { it.toMutableList() }.toMutableList()
     val mapWidth = map.first().size
     val mapHeight = map.size
     var patrol = map.flatten().first { it is MapElement.Patrol } as MapElement.Patrol
@@ -23,7 +22,6 @@ private fun part1(): Int {
 
     while (patrol.x in 0..<mapWidth && patrol.y in 0..<mapHeight) {
         visitedCoordinates.add(patrol.x to patrol.y)
-        controlMap[patrol.y][patrol.x] = patrol
         patrol = getNextPositionForPatrol(patrol, map, mapWidth, mapHeight)
     }
 
