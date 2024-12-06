@@ -11,7 +11,7 @@ fun runDay(day: Int, block: () -> Unit) {
 }
 
 fun <T> runPart(part: Int, block: () -> T) {
-    val timePart = (0..1000).map {
+    val timePart = (0..0).map {
         measureTimedValue { block() }
     }.minBy { it.duration }
 
