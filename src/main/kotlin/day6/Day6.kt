@@ -31,12 +31,6 @@ private fun part1(): Int {
         }
     }
 
-    controlMap.joinToString("\n") {
-        it.joinToString(" ") {
-            it.toString()
-        }
-    }
-
     return visitedCoordinates.size
 }
 
