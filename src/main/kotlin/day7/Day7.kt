@@ -2,6 +2,7 @@ package day7
 
 import day7.Operator.*
 import kotlinx.coroutines.*
+import utils.mapParallel
 import utils.runDay
 import utils.runPart
 
@@ -53,12 +54,6 @@ private fun part(possibleOperators: List<Operator>) = runBlocking(Dispatchers.De
 
         0L
     }.sum()
-}
-
-private suspend fun <T, R> List<T>.mapParallel(block: (T) -> R): List<R> {
-    return coroutineScope {
-        map { async { block(it) } }.map { it.await() }
-    }
 }
 
 private fun solveEquation(

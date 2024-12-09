@@ -28,7 +28,7 @@ private fun part1(): Int {
     return visitedCoordinates.size
 }
 
-fun part2(): Int = runBlocking {
+fun part2(): Int = runBlocking(Dispatchers.Default) {
     val map = getMap()
     val mapWidth = map.first().size
     val mapHeight = map.size
@@ -36,25 +36,23 @@ fun part2(): Int = runBlocking {
     val jobs = map.flatMapIndexed { rowIndex, row ->
         row.mapIndexed { columnIndex, element ->
             async {
-                withContext(Dispatchers.Default) {
-                    if (element is MapElement.Block || element is MapElement.Patrol) return@withContext false
+                if (element is MapElement.Block || element is MapElement.Patrol) return@async false
 
-                    val innerMap = map.toMutableList().map { it.toMutableList() }
-                    var patrol = initialPatrol.copy()
-                    val previousDirectionChanges = mutableSetOf<Pair<Pair<Int, Int>, Direction>>()
+                val innerMap = map.toMutableList().map { it.toMutableList() }
+                var patrol = initialPatrol.copy()
+                val previousDirectionChanges = mutableSetOf<Pair<Pair<Int, Int>, Direction>>()
 
-                    innerMap[rowIndex][columnIndex] = MapElement.Block(columnIndex, rowIndex)
-                    while (patrol.x in 0..<mapWidth && patrol.y in 0..<mapHeight) {
-                        patrol = getNextPositionForPatrol(patrol, innerMap, mapWidth, mapHeight)
-                        if (patrol.direction != previousDirectionChanges.lastOrNull()?.second) {
-                            if (!previousDirectionChanges.add((patrol.x to patrol.y) to patrol.direction)) {
-                                return@withContext true
-                            }
+                innerMap[rowIndex][columnIndex] = MapElement.Block(columnIndex, rowIndex)
+                while (patrol.x in 0..<mapWidth && patrol.y in 0..<mapHeight) {
+                    patrol = getNextPositionForPatrol(patrol, innerMap, mapWidth, mapHeight)
+                    if (patrol.direction != previousDirectionChanges.lastOrNull()?.second) {
+                        if (!previousDirectionChanges.add((patrol.x to patrol.y) to patrol.direction)) {
+                            return@async true
                         }
                     }
-
-                    return@withContext false
                 }
+
+                return@async false
             }
         }
     }

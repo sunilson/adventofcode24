@@ -2,7 +2,7 @@ package utils
 
 import kotlin.time.measureTimedValue
 
-fun runDay(day: Int, block: () -> Unit) {
+inline fun runDay(day: Int, block: () -> Unit) {
     println()
     println("---------- Day $day ----------")
     block()
@@ -10,8 +10,8 @@ fun runDay(day: Int, block: () -> Unit) {
     println()
 }
 
-fun <T> runPart(part: Int, block: () -> T) {
-    val timePart = (0..0).map {
+inline fun <T> runPart(part: Int, block: () -> T) {
+    val timePart = (0..50).map {
         measureTimedValue { block() }
     }.minBy { it.duration }
 
