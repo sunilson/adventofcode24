@@ -1,52 +1,70 @@
-----------------------------
 ## Day 1
-Ran Part 1 in 521.333us with result: 2192892 with 100 iterations
-Ran Part 2 in 505.708us with result: 22962826 with 100 iterations
+<table>
+<tr><th>Part</th><th>Result</th><th>Duration</th><th>Iterations</th></tr>
+<tr><td>1</td><td>2192892</td><td>691.75us</td><td>100</td></tr>
+<tr><td>2</td><td>22962826</td><td>492.792us</td><td>100</td></tr>
+</table>
 
 
-----------------------------
 ## Day 2
-Ran Part 1 in 535.875us with result: 564 with 100 iterations
-Ran Part 2 in 432.583us with result: 604 with 100 iterations
+<table>
+<tr><th>Part</th><th>Result</th><th>Duration</th><th>Iterations</th></tr>
+<tr><td>1</td><td>564</td><td>536.917us</td><td>100</td></tr>
+<tr><td>2</td><td>604</td><td>455.916us</td><td>100</td></tr>
+</table>
 
 
-----------------------------
 ## Day 3
-Ran Part 1 in 248.25us with result: 183788984 with 100 iterations
-Ran Part 2 in 343.125us with result: 62098619 with 100 iterations
+<table>
+<tr><th>Part</th><th>Result</th><th>Duration</th><th>Iterations</th></tr>
+<tr><td>1</td><td>183788984</td><td>275.667us</td><td>100</td></tr>
+<tr><td>2</td><td>62098619</td><td>374.458us</td><td>100</td></tr>
+</table>
 
 
-----------------------------
 ## Day 4
-Ran Part 1 in 1.169791ms with result: 2571 with 100 iterations
-Ran Part 2 in 215.834us with result: 1992 with 100 iterations
+<table>
+<tr><th>Part</th><th>Result</th><th>Duration</th><th>Iterations</th></tr>
+<tr><td>1</td><td>2571</td><td>1.154500ms</td><td>100</td></tr>
+<tr><td>2</td><td>1992</td><td>218us</td><td>100</td></tr>
+</table>
 
 
-----------------------------
 ## Day 5
-Ran Part 1 in 1.714416ms with result: 4135 with 100 iterations
-Ran Part 2 in 1.614042ms with result: 5285 with 100 iterations
+<table>
+<tr><th>Part</th><th>Result</th><th>Duration</th><th>Iterations</th></tr>
+<tr><td>1</td><td>4135</td><td>1.758583ms</td><td>100</td></tr>
+<tr><td>2</td><td>5285</td><td>1.744917ms</td><td>100</td></tr>
+</table>
 
 
-----------------------------
 ## Day 6
-Ran Part 1 in 624.083us with result: 4722 with 10 iterations
-Ran Part 2 in 730.862375ms with result: 1602 with 10 iterations
+<table>
+<tr><th>Part</th><th>Result</th><th>Duration</th><th>Iterations</th></tr>
+<tr><td>1</td><td>4722</td><td>553.875us</td><td>10</td></tr>
+<tr><td>2</td><td>1602</td><td>739.168959ms</td><td>10</td></tr>
+</table>
 
 
-----------------------------
 ## Day 7
-Ran Part 1 in 8.422ms with result: 1153997401072 with 10 iterations
-Ran Part 2 in 888.178875ms with result: 97902809384118 with 10 iterations
+<table>
+<tr><th>Part</th><th>Result</th><th>Duration</th><th>Iterations</th></tr>
+<tr><td>1</td><td>1153997401072</td><td>8.799708ms</td><td>10</td></tr>
+<tr><td>2</td><td>97902809384118</td><td>906.625625ms</td><td>10</td></tr>
+</table>
 
 
-----------------------------
 ## Day 8
-Ran Part 1 in 100.375us with result: 301 with 100 iterations
-Ran Part 2 in 147.25us with result: 1019 with 100 iterations
+<table>
+<tr><th>Part</th><th>Result</th><th>Duration</th><th>Iterations</th></tr>
+<tr><td>1</td><td>301</td><td>100.5us</td><td>100</td></tr>
+<tr><td>2</td><td>1019</td><td>151.584us</td><td>100</td></tr>
+</table>
 
 
-----------------------------
 ## Day 9
-Ran Part 1 in 692.011583ms with result: 6344673854800 with 20 iterations
-Ran Part 2 in 137.671583ms with result: 6360363199987 with 20 iterations
+<table>
+<tr><th>Part</th><th>Result</th><th>Duration</th><th>Iterations</th></tr>
+<tr><td>1</td><td>6344673854800</td><td>691.062ms</td><td>20</td></tr>
+<tr><td>2</td><td>6360363199987</td><td>111.810792ms</td><td>20</td></tr>
+</table>

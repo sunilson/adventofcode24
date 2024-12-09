@@ -5,9 +5,11 @@ import kotlin.time.measureTimedValue
 inline fun runDay(day: Int, block: () -> Unit) {
     println()
     println()
-    println("----------------------------")
     println("## Day $day")
+    println("<table>")
+    println("<tr><th>Part</th><th>Result</th><th>Duration</th><th>Iterations</th></tr>")
     block()
+    println("</table>")
 }
 
 inline fun <T> runPart(part: Int, iterations: Int, block: () -> T) {
@@ -15,5 +17,5 @@ inline fun <T> runPart(part: Int, iterations: Int, block: () -> T) {
         measureTimedValue { block() }
     }.minBy { it.duration }
 
-    println("Ran Part $part in ${timePart.duration} with result: ${timePart.value} with $iterations iterations")
+    println("<tr><td>$part</td><td>${timePart.value}</td><td>${timePart.duration}</td><td>$iterations</td></tr>")
 }
