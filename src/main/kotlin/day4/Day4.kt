@@ -6,8 +6,8 @@ import utils.runPart
 
 fun day4() {
     runDay(4) {
-        runPart(1) { part1() }
-        runPart(2) { part2() }
+        runPart(1, iterations = 100) { part1() }
+        runPart(2, iterations = 100) { part2() }
     }
 }
 

@@ -6,8 +6,8 @@ import kotlin.math.abs
 
 fun day1() {
     runDay(1) {
-        runPart(1) { part1(INPUT_DAY_1) }
-        runPart(2) { part2(INPUT_DAY_1) }
+        runPart(1, iterations = 100) { part1(INPUT_DAY_1) }
+        runPart(2, iterations = 100) { part2(INPUT_DAY_1) }
     }
 }
 

@@ -7,8 +7,8 @@ import utils.runPart
 
 fun day2() {
     runDay(2) {
-        runPart(1) { part1(INPUT_DAY_2) }
-        runPart(2) { part2(INPUT_DAY_2) }
+        runPart(1, iterations = 100) { part1(INPUT_DAY_2) }
+        runPart(2, iterations = 100) { part2(INPUT_DAY_2) }
     }
 }
 

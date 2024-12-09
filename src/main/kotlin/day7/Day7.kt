@@ -9,8 +9,8 @@ import utils.runPart
 
 fun day7() {
     runDay(7) {
-        runPart(1) { part(possibleOperators = listOf(ADD, MULTIPLY)) }
-        runPart(2) { part(possibleOperators = listOf(ADD, MULTIPLY, COMBINE)) }
+        runPart(1, iterations = 10) { part(possibleOperators = listOf(ADD, MULTIPLY)) }
+        runPart(2, iterations = 10) { part(possibleOperators = listOf(ADD, MULTIPLY, COMBINE)) }
     }
 }
 
