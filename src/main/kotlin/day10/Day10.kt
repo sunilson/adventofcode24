@@ -1,24 +1,30 @@
 package day10
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import utils.mapParallel
 import utils.runDay
 import utils.runPart
 
 fun day10() {
     runDay(10) {
-        runPart(1, iterations = 1000) { part1() }
-        runPart(2, iterations = 1000) { part2() }
+        runPart(1, iterations = 10000) { part1() }
+        runPart(2, iterations = 10000) { part2() }
     }
 }
 
-private fun part1(): Int {
+private fun part1(): Int = runBlocking(Dispatchers.Default) {
     val map = getMap(INPUT_DAY_10)
-    return getTrailHeads(map).sumOf { findPaths(it, map, map.first().indices, map.indices, emptySet()).toSet().size }
+    getTrailHeads(map).mapParallel {
+        findPaths(it, map, map.first().indices, map.indices, emptySet()).toSet().size
+    }.sum()
 }
 
-
-private fun part2(): Int {
+private fun part2(): Int = runBlocking(Dispatchers.Default) {
     val map = getMap(INPUT_DAY_10)
-    return getTrailHeads(map).sumOf { findPaths(it, map, map.first().indices, map.indices, emptyList()).toList().size }
+    getTrailHeads(map).mapParallel {
+        findPaths(it, map, map.first().indices, map.indices, emptyList()).toList().size
+    }.sum()
 }
 
 private fun findPaths(
