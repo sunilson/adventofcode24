@@ -15,41 +15,41 @@ fun day10() {
 
 private fun part1(): Int = runBlocking(Dispatchers.Default) {
     val map = getMap(INPUT_DAY_10)
-    getTrailHeads(map).mapParallel {
+    getTrailEnds(map).mapParallel {
         findPaths(it, map, map.first().indices, map.indices, emptySet()).toSet().size
     }.sum()
 }
 
 private fun part2(): Int = runBlocking(Dispatchers.Default) {
     val map = getMap(INPUT_DAY_10)
-    getTrailHeads(map).mapParallel {
+    getTrailEnds(map).mapParallel {
         findPaths(it, map, map.first().indices, map.indices, emptyList()).toList().size
     }.sum()
 }
 
 private fun findPaths(
-    start: Pair<Int, Int>,
+    end: Pair<Int, Int>,
     map: List<List<Int>>,
     mapWidth: IntRange,
     mapHeight: IntRange,
-    foundTrailEnds: Iterable<Pair<Int, Int>>
+    foundTrailStarts: Iterable<Pair<Int, Int>>
 ): Iterable<Pair<Int, Int>> {
-    val (x, y) = start
+    val (x, y) = end
     val currentHeight = map[y][x]
 
-    if (currentHeight == 9) {
-        return foundTrailEnds + start
+    if (currentHeight == 0) {
+        return foundTrailStarts + end
     }
 
-    val canGoLeft = (x - 1) in mapWidth && map[y][x - 1] == (currentHeight + 1)
-    val canGoRight = (x + 1) in mapWidth && map[y][x + 1] == (currentHeight + 1)
-    val canGoTop = (y - 1) in mapHeight && map[y - 1][x] == (currentHeight + 1)
-    val canGoBottom = (y + 1) in mapHeight && map[y + 1][x] == (currentHeight + 1)
+    val canGoLeft = (x - 1) in mapWidth && map[y][x - 1] == (currentHeight - 1)
+    val canGoRight = (x + 1) in mapWidth && map[y][x + 1] == (currentHeight - 1)
+    val canGoTop = (y - 1) in mapHeight && map[y - 1][x] == (currentHeight - 1)
+    val canGoBottom = (y + 1) in mapHeight && map[y + 1][x] == (currentHeight - 1)
 
-    val leftCount = if (canGoLeft) findPaths(x - 1 to y, map, mapWidth, mapHeight, foundTrailEnds) else emptySet()
-    val rightCount = if (canGoRight) findPaths(x + 1 to y, map, mapWidth, mapHeight, foundTrailEnds) else emptySet()
-    val topCount = if (canGoTop) findPaths(x to y - 1, map, mapWidth, mapHeight, foundTrailEnds) else emptySet()
-    val bottomCount = if (canGoBottom) findPaths(x to y + 1, map, mapWidth, mapHeight, foundTrailEnds) else emptySet()
+    val leftCount = if (canGoLeft) findPaths(x - 1 to y, map, mapWidth, mapHeight, foundTrailStarts) else emptySet()
+    val rightCount = if (canGoRight) findPaths(x + 1 to y, map, mapWidth, mapHeight, foundTrailStarts) else emptySet()
+    val topCount = if (canGoTop) findPaths(x to y - 1, map, mapWidth, mapHeight, foundTrailStarts) else emptySet()
+    val bottomCount = if (canGoBottom) findPaths(x to y + 1, map, mapWidth, mapHeight, foundTrailStarts) else emptySet()
 
     return leftCount + rightCount + topCount + bottomCount
 }
@@ -63,10 +63,10 @@ private fun getMap(input: String): List<List<Int>> {
         }
 }
 
-private fun getTrailHeads(map: List<List<Int>>): List<Pair<Int, Int>> {
+private fun getTrailEnds(map: List<List<Int>>): List<Pair<Int, Int>> {
     return map.mapIndexed { y, row ->
         row.mapIndexedNotNull { x, digit ->
-            if (digit == 0) x to y else null
+            if (digit == 9) x to y else null
         }
     }.flatten()
 }
