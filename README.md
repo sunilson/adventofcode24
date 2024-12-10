@@ -68,3 +68,11 @@
 <tr><td>1</td><td>6344673854800</td><td>691.062ms</td><td>20</td></tr>
 <tr><td>2</td><td>6360363199987</td><td>111.810792ms</td><td>20</td></tr>
 </table>
+
+
+## Day 10
+<table>
+<tr><th>Part</th><th>Result</th><th>Duration</th><th>Iterations</th></tr>
+<tr><td>1</td><td>744</td><td>513.959us</td><td>1000</td></tr>
+<tr><td>2</td><td>1651</td><td>334.459us</td><td>1000</td></tr>
+</table>

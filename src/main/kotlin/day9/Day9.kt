@@ -75,7 +75,7 @@ private fun compress2(
             list.apply {
                 val size = this.size
                 clear()
-                addAll((0 until size).map { "." })
+                addAll(MutableList(size) { "." })
             }
 
             if (emptySlot.none { it == "." }) {
@@ -115,9 +115,9 @@ private fun getUncompressed2(): MutableList<MutableList<String>> {
                 val number = it.digitToInt()
 
                 if (isEmptySpace) {
-                    add((0 until number).map { _ -> "." }.toMutableList())
+                    add(MutableList(number) { "." })
                 } else {
-                    add((0 until number).map { _ -> "$index" }.toMutableList())
+                    add(MutableList(number) { "$index" })
                     index++
                 }
 
