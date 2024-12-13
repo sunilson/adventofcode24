@@ -76,3 +76,11 @@
 <tr><td>1</td><td>744</td><td>152.583us</td><td>10000</td></tr>
 <tr><td>2</td><td>1651</td><td>145.875us</td><td>10000</td></tr>
 </table>
+
+
+## Day 11
+<table>
+<tr><th>Part</th><th>Result</th><th>Duration</th><th>Iterations</th></tr>
+<tr><td>1</td><td>191690</td><td>197.834us</td><td>1000</td></tr>
+<tr><td>2</td><td>228651922369703</td><td>13.958583ms</td><td>1000</td></tr>
+</table>
